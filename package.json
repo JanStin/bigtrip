@@ -4,11 +4,12 @@
   "private": true,
   "description": "Личный проект «Большое путешествие» от HTML Academy",
   "scripts": {
-    "eslint": "eslint src/**/*.js",
+    "eslint": "eslint src/*.js",
     "test": "npm run eslint"
   },
   "devDependencies": {
-    "eslint": "6.1.0",
+    "eslint": "^7.5.0",
+    "eslint-config-google": "^0.14.0",
     "eslint-config-htmlacademy": "0.5.2"
   },
   "engines": {
