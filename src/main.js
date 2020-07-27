@@ -272,3 +272,13 @@ const createTripEndpoint = () => {
       </form>`
     );
 };
+
+/**
+    * Функция отрисовки.
+    * @param container - Контейнер, куда будет отрисован элемент.
+    * @param template - Элемент, который будет отрисован.
+    * @param place - Место, куда будет отрисован. По умолчанию: перед закрытием container. Можно посмотреть подсказку по insertAdjacentHTML.
+    */
+   const render = (container, template, place = `beforeend`) => {
+    container.insertAdjacentHTML(place, template);
+};
