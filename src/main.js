@@ -89,7 +89,8 @@ const createTripDaysList = () => {
 
 const createTripDay = () => {
     return (
-        `<div class="day__info">
+        `<li class="trip-days__item  day">
+        <div class="day__info">
         <span class="day__counter">1</span>
         <time class="day__date" datetime="2019-03-18">MAR 18</time>
       </div>
@@ -99,7 +100,8 @@ const createTripDay = () => {
 
 const createTripEndpoint = () => {
     return (
-        `<form class="event  event--edit" action="#" method="post">
+        `<li class="trip-events__item">
+        <form class="event  event--edit" action="#" method="post">
         <header class="event__header">
           <div class="event__type-wrapper">
             <label class="event__type  event__type-btn" for="event-type-toggle-1">
@@ -269,7 +271,8 @@ const createTripEndpoint = () => {
             </div>
           </section>
         </section>
-      </form>`
+      </form>
+      </li>`
     );
 };
 
@@ -279,6 +282,31 @@ const createTripEndpoint = () => {
     * @param template - Элемент, который будет отрисован.
     * @param place - Место, куда будет отрисован. По умолчанию: перед закрытием container. Можно посмотреть подсказку по insertAdjacentHTML.
     */
-   const render = (container, template, place = `beforeend`) => {
+const render = (container, template, place = `beforeend`) => {
     container.insertAdjacentHTML(place, template);
 };
+
+// Выделение основных селекторов.
+const siteHeaderElement = document.querySelector(`.trip-main`);
+const siteHeaderControls = siteHeaderElement.querySelector(`.trip-main__trip-controls.trip-controls`);
+const siteHeaderMenuFirstTitle = siteHeaderElement.querySelector(`.visually-hidden`);
+const siteMainElement = document.querySelector(`.page-main`);
+// Отрисовка основных селекторов.
+render(siteHeaderElement, createMenuTripInfo(), `afterbegin`);
+render(siteHeaderMenuFirstTitle, createMenuNav(), `afterend`);
+render(siteHeaderControls, createMenuFilter());
+
+// Нахождение селектора для вывода маршрутов.
+const siteMainTripEvents = siteMainElement.querySelector(`.trip-events`);
+// Отрисовка сортировки и списка маршрутов.
+render(siteMainTripEvents, createSort());
+render(siteMainTripEvents, createTripDaysList());
+// Нахождение и отрисовка дня.
+const siteMainTripDay = siteMainTripEvents.querySelector(`.trip-days`);
+render(siteMainTripDay, createTripDay());
+// Нахождение селектора для точки маршрута и отрисовка последнего.
+const siteMainTripEndpoint = siteMainTripDay.querySelector(`.trip-events__list`);
+render(siteMainTripEndpoint, createTripEndpoint());
+render(siteMainTripEndpoint, createTripEndpoint());
+render(siteMainTripEndpoint, createTripEndpoint());
+
